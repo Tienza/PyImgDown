@@ -15,10 +15,6 @@ def PyImgDown(url, folder_name):
         "Connection": "keep-alive"
     }
 
-    # Create Folder To Store Download Pictures
-    if not os.path.exists(folder_name):
-        os.makedirs(folder_name)
-
     # URLLIB2 Method
     try:
         page = urllib2.Request(url, headers=request_headers)
@@ -30,6 +26,11 @@ def PyImgDown(url, folder_name):
         images = list(set(tag['src'] for tag in tags))
 
         str_img = []
+
+        if images != []:
+            # Create Folder To Store Download Pictures
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
 
         for image in images:
             str_img.append(str(image))
