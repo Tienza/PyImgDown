@@ -67,7 +67,7 @@ def PyImgDown(url, folder_name):
         try:
             link_check = str_img[i][:5]
             if link_check != "http:":
-                down_link = "http:" + str_img[i]
+                down_link = url + str_img[i]
             else:
                 down_link = str_img[i]
 
@@ -77,7 +77,7 @@ def PyImgDown(url, folder_name):
                 data = file.read()
                 with open(folder_name + "/" + "img" + str(i) + ".jpg", 'wb') as img:
                     img.write(data)
-                print("Successfully Downloaded: http:" + str_img[i] )
+                print("Successfully Downloaded: " + str_img[i] )
             elif extension == ".png":
                 file = urllib2.urlopen(down_link)
                 data = file.read()
@@ -87,9 +87,9 @@ def PyImgDown(url, folder_name):
         except:
             extension = str_img[i][-4:]
             if extension == ".jpg":
-                print("Failed To Download Image Link: " + "http:" + str_img[i])
+                print("Failed To Download Image Link: " + str_img[i])
             elif extension == ".png":
                 print("Failed To Download Image Link: " + str_img[i])
 
 
-PyImgDown(raw_input("Pleas Enter URL To Download Images: "), raw_input("Please Name Folder To Store Images: "))
+PyImgDown(raw_input("Please Enter URL To Download Images: "), raw_input("Please Name Folder To Store Images: "))
